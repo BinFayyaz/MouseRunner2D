@@ -1,0 +1,56 @@
+import RPi.GPIO as GPIO
+import time
+
+# Set up the GPIO pins
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
+
+# Function to move the car forward
+def move_forward():
+    GPIO.output(7, True)
+    GPIO.output(11, False)
+    GPIO.output(13, True)
+    GPIO.output(15, False)
+
+# Function to move the car backward
+def move_backward():
+    GPIO.output(7, False)
+    GPIO.output(11, True)
+    GPIO.output(13, False)
+    GPIO.output(15, True)
+
+# Function to turn the car left
+def turn_left():
+    GPIO.output(7, False)
+    GPIO.output(11, True)
+    GPIO.output(13, True)
+    GPIO.output(15, False)
+
+# Function to turn the car right
+def turn_right():
+    GPIO.output(7, True)
+    GPIO.output(11, False)
+    GPIO.output(13, False)
+    GPIO.output(15, True)
+
+# Function to stop the car
+def stop():
+    GPIO.output(7, False)
+    GPIO.output(11, False)
+    GPIO.output(13, False)
+    GPIO.output(15, False)
+
+# Example usage:
+move_forward()
+time.sleep(2)
+turn_left()
+time.sleep(1)
+move_backward()
+time.sleep(2)
+stop()
+
+# Clean up the GPIO pins
+GPIO.cleanup()
